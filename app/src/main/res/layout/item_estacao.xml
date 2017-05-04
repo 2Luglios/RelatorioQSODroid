@@ -21,7 +21,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="143.000"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nomeEstacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estação do Barbudo"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -36,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="123.0"
-                android:textAlignment="center"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,17 +52,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+600"
-                android:textAlignment="center"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="19:15:28"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
 
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/nomeEstacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Estação do Barbudo"
-        android:textSize="24sp" />
+
 
 </LinearLayout>

@@ -76,6 +76,7 @@ public class Principal extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_contexto_terminar_qso:
                 estacaoSelecionada.setTerminoQSO(Calendar.getInstance());
+                dao.insertOrUpdate(estacaoSelecionada);
                 break;
             case R.id.menu_contexto_deletar:
                 dao.delete(estacaoSelecionada);

@@ -7,4 +7,9 @@
         android:icon="@android:drawable/ic_input_add"
         android:title="Item"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_principal_mapa"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Mapa"
+        app:showAsAction="always" />
 </menu>
