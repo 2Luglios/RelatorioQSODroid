@@ -57,13 +57,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnFrequenciaAnterior"
+                android:id="@+id/btnFrequenciaAnterior100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:text="Anterior" />
+                android:text="-100" />
 
             <TextView
                 android:id="@+id/frequencia"
@@ -71,18 +71,36 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="144.040 Mhz"
+                android:text="144.040"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnFrequenciaProximo"
+                android:id="@+id/btnFrequenciaProximo100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:text="PRÓXIMO" />
+                android:text="+100" />
+
+            <Button
+                android:id="@+id/btnFrequenciaAnterior5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/frequencia"
+                android:layout_toEndOf="@+id/btnFrequenciaAnterior100"
+                android:layout_toRightOf="@+id/btnFrequenciaAnterior100"
+                android:text="-5" />
+
+            <Button
+                android:id="@+id/btnFrequenciaProximo5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/btnFrequenciaProximo100"
+                android:layout_toStartOf="@+id/btnFrequenciaProximo100"
+                android:text="+5" />
 
         </RelativeLayout>
 
@@ -112,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="123.0 khz"
+                android:text="123.0"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -153,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="+600 Mhz"
+                android:text="+600"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 

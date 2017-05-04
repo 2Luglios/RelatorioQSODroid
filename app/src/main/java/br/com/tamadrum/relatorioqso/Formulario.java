@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -32,9 +31,11 @@ public class Formulario extends AppCompatActivity {
 
     private String[] offsets = {"", "-500", "+600", "-600", "-1600", "-5000" };
 
-    private int frequenciaInt;
+    private double frequenciaDouble;
     private int subTonInt;
     private int offsetInt;
+
+    private double passo = 5;
 
     private Estacao estacao;
 
@@ -46,8 +47,10 @@ public class Formulario extends AppCompatActivity {
     private Button btnHf;
     private Button btnVhf;
     private Button btnUhf;
-    private Button btnFrequenciaAnterior;
-    private Button btnFrequenciaProximo;
+    private Button btnFrequenciaAnterior100;
+    private Button btnFrequenciaProximo100;
+    private Button btnFrequenciaAnterior5;
+    private Button btnFrequenciaProximo5;
     private Button btnSubTonAnterior;
     private Button btnSubTonProximo;
     private Button btnOffsetAnterior;
@@ -68,8 +71,11 @@ public class Formulario extends AppCompatActivity {
         btnHf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frequenciaInt = 26965;
-                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaInt));
+                frequenciaDouble = 26965;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
+                passo = 5;
+                btnFrequenciaProximo5.setText("+" + passo);
+                btnFrequenciaAnterior5.setText("-" + passo);
             }
         });
 
@@ -77,8 +83,11 @@ public class Formulario extends AppCompatActivity {
         btnVhf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frequenciaInt = 144400;
-                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaInt));
+                frequenciaDouble = 144000;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
+                passo = 5;
+                btnFrequenciaProximo5.setText("+" + passo);
+                btnFrequenciaAnterior5.setText("-" + passo);
             }
         });
 
@@ -86,26 +95,47 @@ public class Formulario extends AppCompatActivity {
         btnUhf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frequenciaInt = 430000;
-                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaInt));
+                frequenciaDouble = 430000;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
+                passo = 12.5;
+                btnFrequenciaProximo5.setText("+" + passo);
+                btnFrequenciaAnterior5.setText("-" + passo);
             }
         });
 
-        btnFrequenciaAnterior = (Button) findViewById(R.id.btnFrequenciaAnterior);
-        btnFrequenciaAnterior.setOnClickListener(new View.OnClickListener() {
+        btnFrequenciaAnterior100 = (Button) findViewById(R.id.btnFrequenciaAnterior100);
+        btnFrequenciaAnterior100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frequenciaInt -= 5;
-                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaInt));
+                frequenciaDouble -= 100;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
             }
         });
 
-        btnFrequenciaProximo = (Button) findViewById(R.id.btnFrequenciaProximo);
-        btnFrequenciaProximo.setOnClickListener(new View.OnClickListener() {
+        btnFrequenciaProximo100 = (Button) findViewById(R.id.btnFrequenciaProximo100);
+        btnFrequenciaProximo100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frequenciaInt += 5;
-                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaInt));
+                frequenciaDouble += 100;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
+            }
+        });
+
+        btnFrequenciaAnterior5 = (Button) findViewById(R.id.btnFrequenciaAnterior5);
+        btnFrequenciaAnterior5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                frequenciaDouble -= passo;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
+            }
+        });
+
+        btnFrequenciaProximo5 = (Button) findViewById(R.id.btnFrequenciaProximo5);
+        btnFrequenciaProximo5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                frequenciaDouble += passo;
+                frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
             }
         });
 
@@ -152,20 +182,26 @@ public class Formulario extends AppCompatActivity {
         estacao = (Estacao) getIntent().getSerializableExtra("estacao");
         if ( estacao == null ) {
             estacao = new Estacao();
-            frequenciaInt = 144000;
-            frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaInt));
+            frequenciaDouble = 144000;
+            frequencia.setText(NumberFormat.getNumberInstance().format(frequenciaDouble));
             subTonInt = 0;
             subTon.setText(subtons[subTonInt]);
             offsetInt = 0;
             offset.setText(offsets[offsetInt]);
         } else {
             try {
-                frequenciaInt = NumberFormat.getNumberInstance().parse(estacao.getFrequencia()).intValue();
+                frequenciaDouble = NumberFormat.getNumberInstance().parse(estacao.getFrequencia()).intValue();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             subTonInt = ((List)Arrays.asList(subtons)).indexOf(estacao.getSubTon());
             offsetInt = ((List)Arrays.asList(offsets)).indexOf(estacao.getOffset());
+
+            if ( frequenciaDouble > 300000 ) passo = 12.5;
+            else passo = 5;
+
+            btnFrequenciaProximo5.setText("+" + passo);
+            btnFrequenciaAnterior5.setText("-" + passo);
 
             frequencia.setText(estacao.getFrequencia());
             nomeEstacao.setText(estacao.getEstacao());
