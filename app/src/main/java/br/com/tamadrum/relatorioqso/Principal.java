@@ -98,8 +98,10 @@ public class Principal extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if ( item.getItemId() == R.id.menu_add_qso) {
-            startActivity(new Intent(Principal.this, Formulario.class));
+        switch(item.getItemId()) {
+            case R.id.menu_add_qso:
+                startActivity(new Intent(Principal.this, Formulario.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -20,7 +20,6 @@
         <activity
             android:name=".Formulario"
             android:screenOrientation="landscape" />
-        <activity android:name=".Mapa"></activity>
     </application>
 
 </manifest>

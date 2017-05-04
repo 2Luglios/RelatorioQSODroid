@@ -44,6 +44,9 @@ public class Formulario extends AppCompatActivity {
     private TextView offset;
     private EditText nomeEstacao;
     private EditText indicativo;
+    private EditText pais;
+    private EditText estado;
+    private EditText cidade;
     private Button btnHf;
     private Button btnVhf;
     private Button btnUhf;
@@ -66,6 +69,9 @@ public class Formulario extends AppCompatActivity {
         offset = (TextView) findViewById(R.id.offset);
         nomeEstacao = (EditText) findViewById(R.id.nomeEstacao);
         indicativo = (EditText) findViewById(R.id.indicativo);
+        pais = (EditText) findViewById(R.id.pais);
+        estado = (EditText) findViewById(R.id.estado);
+        cidade = (EditText) findViewById(R.id.cidade);
 
         btnHf = (Button) findViewById(R.id.btnHF);
         btnHf.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +214,9 @@ public class Formulario extends AppCompatActivity {
             indicativo.setText(estacao.getIndicatico());
             subTon.setText(estacao.getSubTon());
             offset.setText(estacao.getOffset());
+            pais.setText(estacao.getPais());
+            estado.setText(estacao.getEstado());
+            cidade.setText(estacao.getCidade());
         }
 
     }
@@ -227,6 +236,9 @@ public class Formulario extends AppCompatActivity {
         estacao.setOffset(offset.getText().toString());
         estacao.setInicioQSO(Calendar.getInstance());
         estacao.setTerminoQSO(Calendar.getInstance());
+        estacao.setPais(pais.getEditableText().toString());
+        estacao.setEstado(estado.getEditableText().toString());
+        estacao.setCidade(cidade.getEditableText().toString());
 
         EstacaoDao dao = new EstacaoDao(this);
         dao.insertOrUpdate(estacao);
